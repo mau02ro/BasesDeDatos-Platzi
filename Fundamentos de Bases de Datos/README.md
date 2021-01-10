@@ -93,3 +93,5 @@ Una entidad es algo muy similar a un objeto(POO) y representa algo en el mundo r
 - **Entidades débiles:** No pueden existir sin una entidad fuerte y se representan con un cuadrado con doble línea.
   - _Identidades débiles por identidad:_ no se diferencia entre si mas que la clave de su identidad fuerte.
   - _Identidades débiles pro existencia:_ se les asigna una clave propia.
+
+Ejemplo --> libros(entidad fuerte) - ejemplares(entidad debil)

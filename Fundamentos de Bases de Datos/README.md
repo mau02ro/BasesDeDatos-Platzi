@@ -1,0 +1,95 @@
+# Fundamentos de Bases de Datos
+
+## Bases de datos relacionales
+
+Una base de datos relacional es un tipo de base de datos que almacena y proporciona acceso a puntos de datos relacionados entre sí. Las bases de datos relacionales se basan en el modelo relacional, una forma intuitiva y directa de representar datos en tablas.
+
+#### Ejemplos de bases de datos relacionales:
+
+- SQLServer
+- MySQL
+- PostgresSQL
+- MariaDB
+- ORACLE
+
+## Bases de datos no relacionales
+
+Las bases de datos relacionales se basan en la organización de la información en partes pequeñas que se integran mediante identificadores; a diferencia de las bases de datos no relacionales que, como su nombre lo indica, no tienen un identificador que sirva para relacionar dos o más conjuntos de datos.
+
+En este tipo, la información se representa mediante objetos, de la misma forma que son representados en los lenguajes de programación orientada a objetos (POO) como ocurre en JAVA, C# o Visual Basic . NET.
+
+#### Ejemplos de bases de datos no relacionales:
+
+- Memcached
+- cassandre
+- elasticsearch
+- dynamodb
+- neo4j
+- mongodb
+- firestore
+
+## Servicios de Bases de Datos
+
+- **Auto administrados:** Los auto administrado es la base de datos que tu instalas en tu computadora o en tu servidor, tu te encargas de actualizarla y del mantenimiento.
+
+- **Administrados:** Los servicios administrados no los llevas tú, estos son servicios que ofrecen las nubes modernas, la puedes usar, pero no tienes que encargarte de todo el mantenimiento e la misma.
+
+# Introducción a las bases de datos relacionales
+
+## Historia de las RDB - (bases de datos relacionales)
+
+Las bases de datos surgen de la necesidad de conservar la información más allá de lo que existe en la memoria RAM.
+
+Las bases de datos basadas en archivos eran datos guardados en texto plano, fáciles de guardas pero muy difíciles de consultar y por la necesidad de mejorar esto nacen las bases de datos relacionales. Su invertir **Edgar Codd** dejó ciertas reglas para asegurarse de que toda la filosofía de las bases de datos no se pierda, estandarizo el proceso.
+
+## 12 reglas de Codd
+
+Codd se percató de que existían bases de datos en el mercado las cuales decían ser relacionales, pero lo único que hacían era guardar la información en las tablas, sin estar estas tablas literalmente normalizadas; entonces éste publicó 12 reglas que un verdadero sistema relacional debería tener aunque en la práctica algunas de ellas son difíciles de realizar. Un sistema podrá considerarse “más relacional” cuanto más siga estas reglas.
+
+- **Regla 0**: el sistema debe ser relacional, base de datos y administrador de sistema. Ese sistema debe utilizar sus facilidades relacionales (exclusivamente) para manejar la base de datos.
+
+- **Regla 1:** la regla de la información, toda la información en la base de datos es representada unidireccionalmente, por valores en posiciones de las columnas dentro de filas de tablas. Toda la información en una base de datos relacional se representa explícitamente en el nivel lógico exactamente de una manera: con valores en tablas.
+
+- **Regla 2:** la regla del acceso garantizado, todos los datos deben ser accesibles sin ambigüedad. Esta regla es esencialmente una nueva exposición del requisito fundamental para las llaves primarias. Dice que cada valor escalar individual en la base de datos debe ser lógicamente direccionable especificando el nombre de la tabla, la columna que lo contiene y la llave primaria.
+
+- **Regla 3:** tratamiento sistemático de valores nulos, el sistema de gestión de base de datos debe permitir que haya campos nulos. Debe tener una representación de la “información que falta y de la información inaplicable” que es sistemática, distinto de todos los valores regulares.
+
+- **Regla 4:** catálogo dinámico en línea basado en el modelo relacional, el sistema debe soportar un catálogo en línea, el catálogo relacional debe ser accesible a los usuarios autorizados. Es decir, los usuarios deben poder tener acceso a la estructura de la base de datos (catálogo).
+
+- **Regla 5:** la regla comprensiva del sublenguaje de los datos, el sistema debe soportar por lo menos un lenguaje relacional que:
+
+  - Tenga una sintaxis lineal.
+  - Puede ser utilizado de manera interactiva.
+  - Soporte operaciones de definición de datos, operaciones de manipulación de datos (actualización así como la recuperación), seguridad e integridad y operaciones de administración de transacciones.
+
+- **Regla 6:** regla de actualización, todas las vistas que son teóricamente actualizables deben ser actualizables por el sistema.
+
+- **Regla 7:** alto nivel de inserción, actualización, y cancelación, el sistema debe soportar suministrar datos en el mismo tiempo que se inserte, actualiza o esté borrando. Esto significa que los datos se pueden recuperar de una base de datos relacional en los sistemas construidos de datos de filas múltiples y/o de tablas múltiples.
+
+- **Regla 8:** independencia física de los datos, los programas de aplicación y actividades del terminal permanecen inalterados a nivel lógico cuandoquiera que se realicen cambios en las representaciones de almacenamiento o métodos de acceso.
+
+- **Regla 9:** independencia lógica de los datos, los cambios al nivel lógico (tablas, columnas, filas, etc.) no deben requerir un cambio a una solicitud basada en la estructura. La independencia de datos lógica es más difícil de lograr que la independencia física de datos.
+
+- **Regla 10:** independencia de la integridad, las limitaciones de la integridad se deben especificar por separado de los programas de la aplicación y se almacenan en la base de datos. Debe ser posible cambiar esas limitaciones sin afectar innecesariamente las aplicaciones existentes.
+
+- **Regla 11:** independencia de la distribución, la distribución de las porciones de la base de datos a las varias localizaciones debe ser invisible a los usuarios de la base de datos. Los usos existentes deben continuar funcionando con éxito:
+
+  - Cuando una versión distribuida del SGBD se introdujo por primera vez.
+  - Cuando se distribuyen los datos existentes se redistribuyen en todo el sistema.
+
+- **Regla 12:** la regla de la no subversión, si el sistema proporciona una interfaz de bajo nivel de registro, a parte de una interfaz relacional, que esa interfaz de bajo nivel no se pueda utilizar para subvertir el sistema, por ejemplo: sin pasar por seguridad relacional o limitación de integridad. Esto es debido a que existen sistemas anteriormente no relacionales que añadieron una interfaz relacional, pero con la interfaz nativa existe la posibilidad de trabajar no relacionalmente.
+
+## Entidades y Atributos
+
+Una entidad es algo muy similar a un objeto(POO) y representa algo en el mundo real, incluso algo abstracto. Tienen atributos que son las cosas que los hacen ser una entidad y por convención se ponen en plural.
+
+- **Los atributos compuestos:** son aquellos que tienen atributos en ellos mismos.
+- **Los atributos llaves:** son aquellos que identifican a la entidad y no pueden ser repetidos. Existen
+
+  - _Naturales:_ son inherentes al objeto como el número de serie.
+  - _Claves artificiales:_ no es inherente al objeto y se asigna de manera arbitraria.
+
+- **Entidades fuertes:** son entidades que pueden sobrevivir por sí solas.
+- **Entidades débiles:** No pueden existir sin una entidad fuerte y se representan con un cuadrado con doble línea.
+  - _Identidades débiles por identidad:_ no se diferencia entre si mas que la clave de su identidad fuerte.
+  - _Identidades débiles pro existencia:_ se les asigna una clave propia.

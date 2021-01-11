@@ -95,3 +95,6 @@ Una entidad es algo muy similar a un objeto(POO) y representa algo en el mundo r
   - _Identidades débiles pro existencia:_ se les asigna una clave propia.
 
 Ejemplo --> libros(entidad fuerte) - ejemplares(entidad debil)
+
+## Relaciones
+

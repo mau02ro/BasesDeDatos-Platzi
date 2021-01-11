@@ -98,3 +98,18 @@ Ejemplo --> libros(entidad fuerte) - ejemplares(entidad debil)
 
 ## Relaciones
 
+Las **relaciones** nos permiten ligar o unir nuestras diferentes entidades y se representan con rombos. Por convención se define a través de verbos.
+
+Las relaciones tienen una propiedad llamada **cardinalidad** y tiene que ver con números. Cuántos de un lado pertenecen a cuántos del otro lado:
+
+- Cardinalidad: 1 a 1
+- Cardinalidad: 0 a 1
+- Cardinalidad: 1 a N
+- Cardinalidad: 0 a N
+- Cardinalidad: N a N
+
+## Diagrama ER
+
+Un diagrama es como un mapa y nos ayuda a entender cuáles son las entidades con las que vamos a trabaajar, cuáles son sus relaciones y qúe papel van a jugar en las aplicaciones de la base de datos.
+
+<img src="Platziblog/assets/diagramaER-Platziblog.png" alt="">

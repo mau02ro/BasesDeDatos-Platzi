@@ -152,3 +152,25 @@ _Cuando surgieron las bases de datos tratan de optimizar e uso de memoria, la di
 - CHECK: Se asegura que el valor en la columna cumpla una condición dada.
 - DEFAULT: Coloca un valor por defecto cuando no hay un valor especificado.
 - INDEX: Se crea pro columna para permitir búsquedas más rápidas.
+
+### Normalización
+
+La normalización como su nombre lo indiaca nos ayuda a dejar todo de una forma normal. Esto obedece a las [12 reglas de Codd](12-reglas-de-Codd) y nos permiten separar componentes en la base de datos:
+
+<img src="assets/normalización-n1.png">
+
+- **Primera forma normal(1FN):** Atributos atómicos (Sin campos repetidos).
+
+<img src="assets/normalización-n2.png">
+
+- **Segunda forma normal(2FN):** Cumple con **1FN** y cada campo de la tabla debe depender de una clave única.
+
+<img src="assets/normalización-n3.png">
+
+- **Tercera forma normal(3FN):** Cumple con **1FN** y **2FN** y los campos que **NO** son clave, **NO** deben de tenar dependencias.
+
+<img src="assets/normalización-n4.png">
+
+- **Cuarta forma normal(4FN):** Cumple con **1FN** y **2FN** y **3FN** y los campos multivaluados se identifican por una clave única.
+
+<img src="assets/normalización-n5.png">

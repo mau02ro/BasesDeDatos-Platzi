@@ -113,3 +113,42 @@ Las relaciones tienen una propiedad llamada **cardinalidad** y tiene que ver con
 Un diagrama es como un mapa y nos ayuda a entender cuáles son las entidades con las que vamos a trabaajar, cuáles son sus relaciones y qúe papel van a jugar en las aplicaciones de la base de datos.
 
 <img src="Platziblog/assets/diagramaER-Platziblog.png" alt="">
+
+## Tipos de Datos
+
+- **Texto:**
+
+  - CHAR(n): es un tipo de dato que te permite almacenar cadenas de caracteres.
+  - VARCHAR(n): es un tipo de dato que te permite almacenar cadenas de caracteres(limite 255 caracteres).
+  - TEXT: es un tipo de dato que te permite almacenar texttos grandes.
+
+_Cuando surgieron las bases de datos tratan de optimizar e uso de memoria, la diferencia entre VARCHAR y CHAR, es que CHAR lo que hacia era tomar un pedacito de memoria del numero de caracteres que vas a guardar y reservarlo para que solo tú lo puedas ocupar (si se le asigna un espacio de 8 caracteres siempre van a ser 8 caracteres), VARCHAR sin embargo hace esto de manera dinámica reservaba un mínimo de espacio en memoria y a partir de ahí iba creciendo o encogiéndose hasta el máximo que declararas para permitir que guardaras cadenas mas grandes o mas chicas._
+
+- **Números:**
+
+  - INTEGER: Numeros enteros.
+  - BIGINT: Es un subtipo de INTEGER, este nos permite almacenar un números muy grande.
+  - SMALLINT: Es un subtipo de INTEGER, este nos permite almacenar un números mas pequeños(99 o menos).
+  - DECIMAL(n,s): Recibe dos parámetros de entrada, que representan los números, lo primeros que añades es la parte entera y lo segundo es la parte decimal.
+  - NUMERIC(n,s): Recibe dos parámetros de entrada, que representan los números, lo primeros que añades es la parte entera y lo segundo es la parte decimal.
+
+- **Fecha/hora:**
+
+  - DATE: Fecha(año mes y dia).
+  - TIME: Hora.
+  - DATETIME: Guarda la fecha y la hora.
+  - TIMESTAMP: Guarda la fecha y la hora.
+
+- **Lógicos:**
+
+  - BOOLEAN: Verdadero o falso.
+
+### Constraints(Restricciones)
+
+- NOT NULL: Se asegura que la columna no tenga valores nulos.
+- UNIQUE: Se asegura que cada valor en la columna no se repita.
+- PRIMARY KEY: Es una combinación de _NOT NULL_ y _UNIQUE_.
+- FOREIGN KEY: Identifica de manera única una tupla en otra tabla.
+- CHECK: Se asegura que el valor en la columna cumpla una condición dada.
+- DEFAULT: Coloca un valor por defecto cuando no hay un valor especificado.
+- INDEX: Se crea pro columna para permitir búsquedas más rápidas.

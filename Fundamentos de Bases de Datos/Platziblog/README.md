@@ -29,3 +29,7 @@
 - **Categorías**
   - Npmbre de Categoría
   - IdCategoria
+
+## Diagrama ER
+
+<img src="assets/diagramaER-Platziblog.png" alt="">

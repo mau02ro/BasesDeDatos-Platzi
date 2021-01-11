@@ -176,3 +176,31 @@ La normalización como su nombre lo indiaca nos ayuda a dejar todo de una forma 
 - **Cuarta forma normal(4FN):** Cumple con **1FN** y **2FN** y **3FN** y los campos multivaluados se identifican por una clave única.
 
 <img src="assets/normalización-n5.png">
+
+# SQL
+
+## Historia de SQL
+
+**SQL** significa **Structured Query Language** y tiene una estructura clara y fija. Su objetivo es hacer un solo lenguaje para consultar cualquier manejador de bases de datos volviéndose un gran estándar.
+
+Ahora existe el **NOSQL** o **Not Only Structured Query language** que significa que no sólo se utiliza **SQL** en las bases de datos no relacionales.
+
+## DDL create
+
+**SQL** tiene dos grandes sublenguajes:
+
+- **DDL (Data Definition Language)**
+
+Este nos ayuda a crear la estructura de una base de datos.
+
+Esxiten tres grandes comados:
+
+- Create: Nos ayuda a crear bases de datos, tablas, vistas, índices, etc.
+- Alter: Ayuda a alterar o modificar entidades.
+- Drop: Nos ayuda a borrar. _Hay que tener cuidado al utilizarlo._
+
+**3 Objetos que manipularemos con el lenguaje DDL:**
+
+- Database o bases de datos.
+- Table o tablas: Son traducción a SQL de las entidades.
+- View o vistas: Se ofrece la proyección de los datos de las bases de datos de forma entendible.

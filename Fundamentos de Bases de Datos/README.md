@@ -185,7 +185,7 @@ La normalización como su nombre lo indiaca nos ayuda a dejar todo de una forma 
 
 Ahora existe el **NOSQL** o **Not Only Structured Query language** que significa que no sólo se utiliza **SQL** en las bases de datos no relacionales.
 
-## DDL create
+## DDL
 
 **SQL** tiene dos grandes sublenguajes:
 

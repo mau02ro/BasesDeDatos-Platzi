@@ -10,6 +10,8 @@
   - Estatus
   - Etiquetas (multivaluado)
   - IdPost
+  - IdUsuario (clave foránea)
+  - IdCategoria (clave foránea)
 
 - **Usuarios**
 
@@ -22,14 +24,28 @@
 - **Comentarios**
 
   - Contenido
-  - Fecha de publicación
   - IdComentario
   - IdUsuario (clave foránea)
+  - IdPosts (clave foránea)
 
 - **Categorías**
-  - Npmbre de Categoría
+
+  - Nombre de Categoría
   - IdCategoria
+
+- **Etiquetas**
+
+  - Nombre de Etiqueta
+  - IdEtiqueta
+
+- **Posts Etiquetas (tabla Pivote)**
+  - IdPost (clave primaria, clave foránea)
+  - IdEtiqueta (clave foránea)
 
 ## Diagrama ER
 
 <img src="assets/diagramaER-Platziblog.png" alt="">
+
+## Diagrama Fisico
+
+<img src="assets/DiagramaFisico-PlatziBlogs.png" alt="">

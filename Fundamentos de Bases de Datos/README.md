@@ -155,6 +155,8 @@ _Cuando surgieron las bases de datos tratan de optimizar e uso de memoria, la di
 
 ### Normalización
 
+[Ejemplo Completo](https://docs.google.com/document/d/1cA1rNSk-tJgX3brjufMvpx-gqcvvkaylxyKi8Fke_ag/edit?usp=sharing)
+
 La normalización como su nombre lo indiaca nos ayuda a dejar todo de una forma normal. Esto obedece a las [12 reglas de Codd](12-reglas-de-Codd) y nos permiten separar componentes en la base de datos:
 
 <img src="assets/normalización-n1.png">

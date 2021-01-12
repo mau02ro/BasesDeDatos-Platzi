@@ -204,3 +204,15 @@ Esxiten tres grandes comados:
 - Database o bases de datos.
 - Table o tablas: Son traducción a SQL de las entidades.
 - View o vistas: Se ofrece la proyección de los datos de las bases de datos de forma entendible.
+
+# Consultas a una base de datos
+
+Las consultas en una base de datos juegan un papel muy fundamental, puesto que facilitan de manera considerable los procesos en cualquier empresa.
+
+Alrededor de las consultas de las bases e datos se han creado varias especialidades como **ETL** o transformación de datos. **Business intelligence** e incluso **machine learning**.
+
+## Estructura básica de las queries
+
+Las queries son la forma en la que estructuramos las preguntas que se harán a la base de datos transforma preguntas en sintaxis.
+
+El query tiene básicamente 2 partes: **SELECT** y **FROM** y puede aparecer una tercera como **WHERE**.

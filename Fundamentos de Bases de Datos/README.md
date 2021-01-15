@@ -216,3 +216,37 @@ Alrededor de las consultas de las bases e datos se han creado varias especialida
 Las queries son la forma en la que estructuramos las preguntas que se harán a la base de datos transforma preguntas en sintaxis.
 
 El query tiene básicamente 2 partes: **SELECT** y **FROM** y puede aparecer una tercera como **WHERE**.
+
+**SELECT** no spermite seleccionar los datos que queremos traer,
+
+```sql
+
+SELECT city, count(*) AS total
+FROM pepole
+WHERE active = true
+GROUP BY city
+ORDER BY total DESC
+HAVING total >= 2;
+
+```
+
+## De pregunta a QUERY
+
+- Lo que quieres mostrar = **SELECT**
+- De dónde voy a tomar los datos = **FROM**
+- Los filtros de los datos que quieres mostrar = **WHERE**
+- Los rubros por los que me interesa agrupar la información = **GROUP BY**
+- El orden en que quiero presentar mi informe = **ORDER BY**
+- Los filtros que quiero que mis datos agrupados tengan = **HAVING**
+
+# Bases de datos no relacionales
+
+Respecto a las bases de datos no relacionales, no existen un solo tipo aunque se engloben un una sola categoría.
+
+## Tipos de bases de datos no relacionales:
+
+- **Clave-valor:** son ideales para almacenar y extraer datos con una clave única. Manejan los diccionarios de manera excepcional, ejemplos **_dynamodb_**, **_cassandra_**.
+- **Basada en documentos:** son una implementación de clave valor que varia en la forma semiestructurada en que se tarta la información. Ideal para almacenar datos json y xml, ejemplos **_mongodb_** o **_firestore_**.
+- **Basadas en grafos:** basada en teoría de grafos, sirven para entidades que se encuentran interconectadas por multiples relaciones. Ideales para almacenar relaciones complejas, ejemplos **_noe4j_** o **_TITAN_**.
+- **En memoria:** pueden ser de estructura variada, pero se ventaja radica en la velocidad, ya que al vivir en memoria la extracción de datos es casi inmediata, ejemplos **_mencached_** y **_redis_**.
+- **Optimizadas para búsquedas:** pueden ser de diversas estructuras, su ventaja radica en que se pueden hacer queries y búsquedas complejas de manera senilla, ejemplos **_bigquery_** y **_elasticsearch_**.

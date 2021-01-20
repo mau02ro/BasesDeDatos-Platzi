@@ -105,3 +105,119 @@ Supongamos que contamos con dos conjuntos, el conjunto A y el conjunto B, o, la 
 Esta es la forma mas fácil de seleccionar información de diferentes tablas, es tal vez la que mas usas a diario en tu trabajo con bases de datos. Esta union retorna todas las filas de la tabla A que coinciden en la tabla B. Es decir aquellas que están en la tabla A Y en la tabla B, si lo vemos en conjuntos la intersección entre la tabla A y la B.
 
 <img src="assets/inner-join.webp" >
+
+Esto lo podemos implementar de esta forma cuando estemos escribiendo las consultas:
+
+```SQL
+
+SELECT <columna_1> , <columna_2>,  <columna_3> ... <columna_n>
+FROM Tabla_A AS A
+  INNER JOIN Tabla_B AS B
+    ON A.pk = B.pk
+
+```
+
+2. **Left Join**
+
+Esta consulta retorna todas las filas que están en la tabla A y ademas si hay coincidencias de filas en la tabla B también va a traer esas filas.
+
+<img src="assets/left-join.webp" >
+
+Esto lo podemos implementar de esta forma cuando estemos escribiendo las consultas:
+
+```SQL
+
+SELECT <columna_1> , <columna_2>,  <columna_3> ... <columna_n>
+FROM Tabla_A AS A
+  LEFT JOIN Tabla_B AS B
+    ON A.pk = B.pk
+
+```
+
+3. **Right Join**
+
+Esta consulta retorna todas las filas de la tabla B y ademas si hay filas en la tabla A que coinciden también va a traer estas filas de la tabla A.
+
+<img src="assets/right-join.webp">
+
+Esto lo podemos implementar de esta forma cuando estemos escribiendo las consultas:
+
+```SQL
+
+SELECT <columna_1> , <columna_2>,  <columna_3> ... <columna_n>
+FROM Tabla_A AS A
+  RIGHT JOIN Tabla_B AS B
+    ON A.pk = B.pk
+
+```
+
+4. **Outer Join**
+
+Este join retorna TODAS las filas de las dos tablas. Hace la union entre las filas que coinciden entre la tabla A y la tabla B.
+
+<img src="assets/outer-join.jpg">
+
+Esto lo podemos implementar de esta forma cuando estemos escribiendo las consultas:
+
+```SQL
+
+SELECT <columna_1> , <columna_2>,  <columna_3> ... <columna_n>
+FROM Tabla_A AS A
+  FULL OUTER JOIN Tabla_B AS B
+    ON A.pk = B.pk
+
+```
+
+5. **Left excluding join**
+
+Esta consulta retorna todas las filas de la tabla de la izquierda, es decir la tabla A que no tienen ninguna coincidencia con la tabla de la derecha, es decir la tabla B.
+
+<img src="assets/left-excluding-join.webp">
+
+Esto lo podemos implementar de esta forma cuando estemos escribiendo las consultas:
+
+```SQL
+
+SELECT <columna_1> , <columna_2>,  <columna_3> ... <columna_n>
+FROM Tabla_A AS A
+  LEFT JOIN Tabla_B AS B
+    ON A.pk = B.pk
+  WHERE B.pk IS NULL
+
+```
+
+6. **Right Excluding join**
+
+Esta consulta retorna todas las filas de la tabla de la derecha, es decir la tabla B que no tienen coincidencias en la tabla de la izquierda, es decir la tabla A.
+
+<img src="assets/right-excluding-join.webp">
+
+Esto lo podemos implementar de esta forma cuando estemos escribiendo las consultas:
+
+```SQL
+
+SELECT <columna_1> , <columna_2>,  <columna_3> ... <columna_n>
+FROM Tabla_A AS A
+  RIGHT JOIN Tabla_B AS B
+    ON A.pk = B.pk
+  WHERE A.pk IS NULL
+
+```
+
+7. **Outer excluding join**
+
+Esta consulta retorna todas las filas de la tabla de la izquierda, tabla A, y todas las filas de la tabla de la derecha, tabla B que no coinciden.
+
+<img src="assets/outer-excluding-join.webp">
+
+Esto lo podemos implementar de esta forma cuando estemos escribiendo las consultas:
+
+```SQL
+
+SELECT <select_list>
+FROM Table_A A
+  FULL OUTER JOIN Table_B B
+    ON A.Key = B.Key
+  WHERE A.Key IS NULL OR B.Key IS NULL
+
+```

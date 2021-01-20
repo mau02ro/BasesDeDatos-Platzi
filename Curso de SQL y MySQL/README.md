@@ -71,3 +71,37 @@ INSERT INTO authors(name, nationality)
   VALUES('Gabriel García Márquez', 'COL');
 
 ```
+
+## Archivos SQL
+
+```
+source (path del archivo sql)
+```
+
+## SELECT
+
+```SQL
+
+SELECT (propiedades) FROM (tabla);
+
+SELECT (propiedades) FROM (tabla) WHERE (condición);
+
+SELECT (propiedades) FROM (tabla) WHERE (condición) LIMIT (limite);
+
+```
+
+### JOIN
+
+Existen diferentes formas en las que se pueden unir las tablas en nuestras consultas y de acuerdo con esta unión se va a mostrar información, y es importante siempre tener clara esta relación. En esta clase te voy a mostrar gráficamente 7 diferentes tipos de uniones que puedes realizar.
+
+Usar correctamente estas uniones puede reducir el tiempo de ejecución de tus consultas y mejorar el rendimiento de tus aplicaciones.
+
+Como yo lo veo cuando hacemos uniones en las consultas para seleccionar información, estamos trabajando con tablas, estas tablas podemos verlas como conjuntos de información, de forma que podemos asimilar los joins entre tablas como uniones e intersecciones entre conjuntos.
+
+Supongamos que contamos con dos conjuntos, el conjunto A y el conjunto B, o, la tabla A y la tabla B. Sobre estos conjuntos veamos cuál es el resultado si aplicamos diferentes tipos de join.
+
+1. **Inner Join**
+
+Esta es la forma mas fácil de seleccionar información de diferentes tablas, es tal vez la que mas usas a diario en tu trabajo con bases de datos. Esta union retorna todas las filas de la tabla A que coinciden en la tabla B. Es decir aquellas que están en la tabla A Y en la tabla B, si lo vemos en conjuntos la intersección entre la tabla A y la B.
+
+<img src="assets/inner-join.webp" >

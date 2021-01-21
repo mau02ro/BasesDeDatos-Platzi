@@ -221,3 +221,21 @@ FROM Table_A A
   WHERE A.Key IS NULL OR B.Key IS NULL
 
 ```
+
+## UPDATE AND DELETE
+
+```SQL
+
+UPDATE tabla
+  SET [columns = valor, ...]
+WHERE [condiciones]
+LIMIT 1:
+
+UPDATE clients SET active = 0 WHERE client_id = 1 LIMIT 1;
+
+DELETE FROM tabla
+WHERE [condiciones]  LIMIT 1;
+
+-- Borrar el contenido de la tabla
+TRUNCATE tabla;
+```

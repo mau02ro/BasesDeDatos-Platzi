@@ -215,3 +215,47 @@ Las agregaciones son operaciones avanzadas que podemos realizar sobre nuestra ba
 <img src="https://github.com/mau02ro/BasesDeDatos-Platzi/blob/main/MongoDB/assets/map-reduce.png"/>
 
 - **Agregaciones de propósito único**: Funciones ya definidas que nos ayudan a calcular un resultado especial pero debemos tener cuidado porque pueden mejorar o afectar el performance de la base de datos. Por ejemplo: **_count()_**, **estimatedDocumentCount()** y **_distinct()_**.
+
+## Consultas más rápidas con Índices
+
+Los índices nos ayudan a que nuestras consultas sean más rápidas porque, sin ellos, MongoDB debería escanear toda la colección en busca de los resultados.
+
+Tipos de índices:
+
+- De un solo campo
+- Compuestos
+- Multi-llave
+- Geoespaciales
+- De texto
+- Hashed
+
+### Comandos
+
+- Ver los índices exitentes:
+
+```
+db.collection.getIndexes()
+
+<!-- Ejemplo -->
+db.cursos.getIndexes()
+```
+
+- Crear índices:
+
+```
+db.collection.createIndex({nombre_campo: 'type'})
+
+<!-- Ejemplo -->
+db.cursos.createIndex({nombre: 'text'})
+```
+
+- Consultar por índices:
+
+```
+db.collection.find({$type: {$search: texto_buscar}})
+
+<!-- Ejemplo -->
+db.cursos.find({$text: {$search: "aws"}}, {nombre: 1})
+```
+
+[ARTÍCULO](https://medium.com/statuscode/how-to-speed-up-mongodb-regex-queries-by-a-factor-of-up-to-10-73995435c606)

@@ -1,5 +1,12 @@
 # Curso Básico de MongoDB
 
+## Lecturas
+
+- [How to Speed-Up MongoDB Regex Queries by a Factor of up-to 10](https://medium.com/statuscode/how-to-speed-up-mongodb-regex-queries-by-a-factor-of-up-to-10-73995435c606)
+- [14 Things I Wish I’d Known When Starting with MongoDB](https://www.infoq.com/articles/Starting-With-MongoDB/)
+- [Performance Best Practices: MongoDB Data Modeling and Memory Sizing](https://www.mongodb.com/blog/post/performance-best-practices-mongodb-data-modeling-and-memory-sizing)
+- [What is MongoDB Sharding and the Best Practices?](https://geekflare.com/mongodb-sharding-best-practices/)
+
 ## Bases de datos NoSQL
 
 Las bases de datos NoSQL tienen 4 grandes familias: **Key Value Stores**, **basadas en grafos**, **columnares** y **basadas en documentos**.
@@ -258,4 +265,15 @@ db.collection.find({$type: {$search: texto_buscar}})
 db.cursos.find({$text: {$search: "aws"}}, {nombre: 1})
 ```
 
-[ARTÍCULO](https://medium.com/statuscode/how-to-speed-up-mongodb-regex-queries-by-a-factor-of-up-to-10-73995435c606)
+## Recomendaciones de Arquitectura y Paso a Producción
+
+- Usar proveedores cloud con alta disponibilidad: AWS, Google Cloud o Azure son muy buenas opciones.
+- No te compliques pensando en administración de servidores con MongoDB, servicios como MongoDB Atlas o mlab son muy buenas opciones.
+- Guardar las credenciales en variables de entorno o archivos de configuración fuera del proyecto.
+- Asegura que tu cluster se encuentra en la mis región del proveedor que tu aplicación.
+- Has VPC peering entre la VPC de tu aplicación y la VPC de tu cluster.
+- Cuida la lista de IPs blancas.
+- Puedes habilitar la autenticación en dos pasos.
+- Actualiza constantemente tu versión de MongoDB.
+- Separa los ambientes de desarrollo, test y producción.
+- Habilita la opción de almacenamiento encriptado.

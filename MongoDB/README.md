@@ -137,3 +137,67 @@ _Nota:_
 
 - **One to one**: Documentos embebidos.
 - **One to many**: Documentos embebidos cuando la información no va a cambiar muy frecuentemente y referencias cuando si.
+
+## Operadores para realizar queries y proyecciones
+
+### Operadores
+
+- [Operadores](https://docs.mongodb.com/manual/reference/operator/)
+
+**_Operadores de comparación_**
+
+- **$eq**: Igual ‘=’.
+- **$gt**: Mayor ‘>’.
+- **$gte**: Mayor o igual ‘>=’.
+- **$lt**: Menor ‘<’.
+- **$lte**: Menor o igual ‘<=’.
+- **$ne**: Diferente ‘!=’.
+- **$in**: Valores dentro de un arreglo.
+- **$nin**: Valores que no están dentro de un arreglo.
+
+**_Operadores lógicos._**
+
+- **$and**: Une queries con un and lógico.
+- **$not**: Invierte el efecto de un query.
+- **$nor**: Une queries con un nor lógico.
+- **$or**: Une queries con un or lógico.
+
+**_Operadores por elemento._**
+
+- **$exist**: Documentos que cuentan con un campo específico.
+- **$type**: Documentos que cuentan con un campo de un tipo específico.
+
+**_Operadores para arreglo._**
+
+- **$all**: Arreglos que contengan todos los elementos de la query.
+- **_$elementMatch_**: Documentos que cumplen la condición del $elementMatch en uno de sus elementos.
+- **_$size_**: Documentos que contienen un capo tipo arreglo de un tamaño específico.
+
+#### skip() y limit()
+
+Si tenemos una consulta que retorna 100 documentos pero solamente necesitamos los documentos del número 20 al 30, la manera de hacerlo es usando **skip()** y **limit()**.
+
+Si tenemos 100 carreras y solamente queremos las primeras 10 podemos ejecutar
+
+```
+db.carreras.find({}).limit(10)
+```
+
+Esta nos traerá las primeras 10 carreras.
+
+Ahora si queremos las carreras ubicadas en los puestos 40 y 50 lo que debemos hacer es
+
+```
+db.carreras.find({}).skip(40).limit(10)
+```
+
+### Proyecciones
+
+```
+
+db.databases.findOne({filtro...}, {campos...})
+
+<!-- Ejemplo: -->
+db.inventory.findOne( {status: "A"}, { item: 1, status: 1 } )
+
+```

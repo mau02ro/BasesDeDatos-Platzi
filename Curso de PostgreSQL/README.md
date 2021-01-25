@@ -77,3 +77,17 @@ A través de la sentencia SHOW CONFIG se nos muestra donde están los archivos d
 ### Comandos para cerrar la consola
 
 - **\q**: Cerrar la consola.
+
+## Jerarquía de Bases de Datos
+
+Toda jerarquía de base de datos se basa en los siguientes elementos:
+
+- **Servidor de base de datos**: Computador que tiene un motor de base de datos instalado y en ejecución.
+
+- **Motor de base de datos**: Software que provee un conjunto de servicios encargados de administrar una base de datos.
+
+- **Base de datos**: Grupo de datos que pertenecen a un mismo contexto.
+
+- **Esquemas de base de datos en PostgreSQL**: Grupo de objetos de base de datos que guarda relación entre sí (tablas, funciones, relaciones, secuencias).
+
+- **Tablas de base de datos**: Estructura que organiza los datos en filas y columnas formando una matriz.

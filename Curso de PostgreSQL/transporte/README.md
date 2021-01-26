@@ -3,7 +3,7 @@
 La estructura de la base de datos diseñada para el reto corresponde a los siguientes
 elementos:
 
-<img src="./assets/struc.webp"/>
+<img src="./assets/estruc.webp"/>
 
 La base de datos se llama transporte, usaremos su esquema predeterminado public.
 

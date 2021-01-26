@@ -91,3 +91,21 @@ Toda jerarquía de base de datos se basa en los siguientes elementos:
 - **Esquemas de base de datos en PostgreSQL**: Grupo de objetos de base de datos que guarda relación entre sí (tablas, funciones, relaciones, secuencias).
 
 - **Tablas de base de datos**: Estructura que organiza los datos en filas y columnas formando una matriz.
+
+## Particiones
+
+A veces cuando estamos manejando tablas con un numero grande de registros, varios millones o mas es necesario particionar las tablas para obtener un mejor desempeño a la hora de consultar dichas tablas. A este proceso se le suele denominar "Partitioning" y es le metodo usado para descomponer una enorme tabla (father) en un cojunto de tablas hijas (child).
+
+Algunas de las enormes ventajas son:
+
+    - Desempeño mejorado para la obtencion de registros (Querys).
+
+    - Desempeño mejorado para la actualización (update).
+
+    - Indices mas pequeños para cada tabla hija contra indices grandes y dificiles de colocar en memoria en una tabla grande.
+
+    - Eliminación rapida de registros. Empleando DROP TABLE en vez de DELETE.
+
+    - Los datos pueden ser migrados o respaldados en medios economicos y pequeños como DVDs, discos duros extraibles, etc.
+
+En postgresql el tipo de partitioning soportado se denomina particionado mediante herencia de tablas. Cada partición puede ser creada como una tabla hija de una unica tabla padre. La tabla padre normalmente debe de ser una tabla vacia, que representara a todo el conjunto de datos.

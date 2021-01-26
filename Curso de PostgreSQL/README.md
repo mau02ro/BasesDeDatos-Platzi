@@ -109,3 +109,31 @@ Algunas de las enormes ventajas son:
     - Los datos pueden ser migrados o respaldados en medios economicos y pequeños como DVDs, discos duros extraibles, etc.
 
 En postgresql el tipo de partitioning soportado se denomina particionado mediante herencia de tablas. Cada partición puede ser creada como una tabla hija de una unica tabla padre. La tabla padre normalmente debe de ser una tabla vacia, que representara a todo el conjunto de datos.
+
+Los dos tipos de particionado mas comunes en postgresql son:
+
+1. Particionar por rangos. La tabla es particionada mediante rangos definidos en base a la columna de llave primary o cualquier columna que no se solape entre los rangos de valores asignados a diferentes tablas hijas.
+
+2. Particionar por lista. La tabla es particionada listando los valores de cada una de las llaves en cada particion.
+
+En postgresql para poder utilizar dicha técnica es necesario seguir algunos pasos:
+
+1. Crear la tabla "maestra", de la cual todas las tablas hijas heredaran. Esta tabla no contendra datos, no debe de tener ningun tipo de restricción (check), no debe de tener indice ni nada por el estilo.
+
+2. Crear todas las tablas hijas heredando de la tabla maestra. Por lo regular estas tablas heredaran todos los campos de la tabla padre y no es necesario crearlos nosotros mismos.
+
+3. Agregar a todas las tablas hijas las restricciones correspondientes sobre los datos que albergaran. Algunos ejemplos de esto serian: CHECK ( pais IN ('México', 'Argentina')), CHECK ( id_cliente BETWEEN 100 AND 200 ) ... CHECK ( id_cliente BETWEEN 5000 AND 5200), en estos dos ultimos ejemplos para evitar traslapes entre los ids de clientes.
+
+4. Para cada particion, crear un indice para la columna(s) llave, tambien se pueden poner los indices que a cada quien le convengan. El indice para la llave primaria no es estrictamente necesario, pero en la mayoria de los casos ayuda mucho. Si tu necesitas una llave unica o llave primaria, necesitaras crearla para cada tabla hija.
+
+5. Definir una regla (RULE) o trigger para redirigir las modificaciones de la tabla padre (master) a la apropiada particion.
+
+6. Verificar que este habilitado a on el parametro constraint_exlusion (SET constraint_exclusion = on;) en el archivo de configuracion postgresql.conf para que los querys sean optimizados para el partitioning.
+
+```sql
+-- EJEMPLO
+
+CREATE TABLE <nombre_de_la_partición> PARTITION OF <nombre_de_la_tabla_padre>
+FOR VALUES FROM (<rango inicial>) TO (<ranog final>)
+
+```

@@ -56,6 +56,8 @@ A través de la sentencia SHOW CONFIG se nos muestra donde están los archivos d
 
 - **\du**: Listar los usuarios y sus roles de la base de datos actual.
 
+- **\dG**: Listar los usuarios y sus roles de la base de datos actual.
+
 ### Comandos de inspección y ejecución
 
 - **\g**: Volver a ejecutar el comando ejecutando justo antes.
@@ -136,4 +138,161 @@ En postgresql para poder utilizar dicha técnica es necesario seguir algunos pas
 CREATE TABLE <nombre_de_la_partición> PARTITION OF <nombre_de_la_tabla_padre>
 FOR VALUES FROM (<rango inicial>) TO (<ranog final>)
 
+```
+
+## Roles
+
+### Var caracteristicar de toles
+
+```SQL
+\h CREATE ROl
+
+```
+
+### Crear roles
+
+```SQL
+CREATE ROLE <nombre_de_usuario> WITH <caracteristicas>;
+
+CREATE ROLE usuario_consulta WITH LOGIN;
+```
+
+**_CREATE ROLE === CREATE USUARIO_**
+
+## Funciones Especiales
+
+Existen 4 funciones especiales que nos ayudarán en nuestro día a día estas son
+
+- ON CONFLICT DO: Es una especie de sobre escritura sobre algo que ya este creado “Como un UPDATE”
+
+- RETURNING: Muestra en pantalla el último cambio hecho
+
+- LIKE / ILIKE: Busqueda por similitudes la diferencia entre ambas es que like busca en minusculas y ilike busca mayusculas/minisculas
+
+- IS / IS NOT: comparacion para atributos especiales como el NULL
+
+```sql
+--ON CONCLICT  DO
+SELECT * FROM estacion;
+
+-- ON CONFLICT DO NOTHING
+--Sí el registro existe, no hace nada pero sí  el registro  no existe lo crea
+INSERT INTO public.estacion (id,nombre,direccion)
+VALUES (350,'xxx','xxx')
+ON CONFLICT DO NOTHING;
+
+SELECT * FROM estacion;
+
+-- ON CONFLICT DO UPDATE SET
+--Sí el registro existe lo actuliza, sí no existe lo crea
+INSERT INTO public.estacion (id,nombre,direccion)
+VALUES (350,'xxx','xxx')
+ON CONFLICT (id) DO
+	UPDATE SET id = 102 ,nombre = 'San francisco ',direccion = '46 howlang';
+
+SELECT * FROM estacion;
+
+
+--RETUNING
+-- RETURNING * | RETURNING name_column
+--Una vez insertamos el valor este no los devuelve muy útil para no usar un SELECT.
+INSERT INTO public.estacion (nombre,direccion)
+VALUES ('New York Station',' 49 Muir Way')
+RETURNING *
+
+
+--IS/IS NOT
+--IS/IS NOT, nos permite comparar tipos de datos que no son estándar o son objetos.
+--NULL es un tipo de dato NO ESTÁNDAR
+SELECT * FROM public.estacion
+WHERE estacion IS NOT NULL;
+```
+
+## Funciones Especiales Avanzadas
+
+Funciones Especiales avanzadas en PosgreSQL
+
+- **COALES**: compara dos valores y retorna el que es nulo.
+- **NULLIF**: Retorna null si son iguales.
+- **GREATEST**: Compara un arreglo y retorna el mayor.
+- **LEAST**: Compara un arreglo de valores y retorna el menor.
+- **BLOQUES ANONIMOS**: Ingresa condicionales dentro de una consulta de BD.
+
+## Las Vistas
+
+Las vistas en esencia son agarra runa consulta que se repite mucho y asignarle un nombre para llamar directa mente.
+
+Existen dos tipos de vistas:
+
+- **Vistas Volátiles**: Siempre que se haga la consulta en la vista, la BD hace la ejecución de la consulta en la BD, por lo que siempre se va a tener información reciente.
+
+- **Vistas Materializada-Persistente**: Hace la consulta una sola vez, y la información queda almacenada en memoria, la siguiente vez que se consulte, trae el dato almacenado, eso es bueno y malo a la vez, bueno porque la velocidad con la se entrega la información es rápida, malo porque la información es actualizada. Es ideal utilizar este tipo de vistas en consultas preexistentes y que no cambien, por ejemplo, las ventas del dio de ayer.
+
+## PL/SQL
+
+<img src="./assets/pl.webp"/>
+
+```sql
+DO $$
+DECLARE
+	rec record := NULL;
+	contador integer := 0;
+BEGIN
+	FOR rec IN SELECT * FROM pasajeros LOOP
+		RAISE NOTICE 'El pasejro se llama %', rec.nombre;
+		contador := contador + 1;
+	END LOOP;
+	RAISE NOTICE 'Conteo -> %', contador;
+END
+$$
+```
+
+```sql
+CREATE FUNCTION impl()
+	RETURNS integer
+	LANGUAGE 'plpgsql'
+AS $$
+DECLARE
+	rec record := NULL;
+	contador integer := 0;
+BEGIN
+	FOR rec IN SELECT * FROM pasajeros LOOP
+		contador := contador + 1;
+	END LOOP;
+	INSERT INTO conteo_pasajeros (total, tiempo)
+		VALUES (contador, now());
+	RETURN contador;
+END
+$$
+```
+
+## Triggers
+
+Son métodos los cuales nos emiten ejecutar funcionalidades cuando se realicen acciones en una tabla (INSERT, UPSATE, DELETE)
+
+```sql
+CREATE FUNCTION impl()
+	RETURNS TRIGGER
+	LANGUAGE 'plpgsql'
+AS $$
+DECLARE
+	rec record := NULL;
+	contador integer := 0;
+BEGIN
+	FOR rec IN SELECT * FROM pasajeros LOOP
+		contador := contador + 1;
+	END LOOP;
+	INSERT INTO conteo_pasajeros (total, tiempo)
+		VALUES (contador, now());
+	RETURN NEW;
+	-- NEW para confirmar los cambios
+	-- OLD para debolver la tabla sin cambios
+END
+$$
+```
+
+```sql
+CREATE TRIGGER mitrigger
+AFTER  INSERT ON pasajeros
+FOR EACH ROW EXECUTE PROCEDURE impl();
 ```

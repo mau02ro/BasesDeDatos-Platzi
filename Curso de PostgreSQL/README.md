@@ -296,3 +296,82 @@ CREATE TRIGGER mitrigger
 AFTER  INSERT ON pasajeros
 FOR EACH ROW EXECUTE PROCEDURE impl();
 ```
+
+## Conectando a Servidores Remotos
+
+```sql
+CREATE EXTENSION dblink;
+
+SELECT * FROM
+dblink('dbname=<nombre>
+		port=<puerto>
+		host=<host>
+		user=<usuario>
+		password=<password>',
+		'SELECT * FROM <nombre_tabla>')
+		AS datos_remotos(<foramto de los datos>);
+
+-- ############
+SELECT * FROM
+dblink('dbname=remota
+		port=5432
+		host=127.0.0.1
+		user=usuario_consulta
+		password=etc123',
+		'SELECT * FROM usuarios_vip')
+		AS datos_remotos(id integer, fecha date);
+
+SELECT * FROM pasajeros
+JOIN
+dblink('dbname=remota
+		port=5432
+		host=127.0.0.1
+		user=usuario_consulta
+		password=etc123',
+		'SELECT * FROM usuarios_vip')
+		AS datos_remotos(id integer, fecha date)
+USING (id);
+```
+
+## Transacciones
+
+Las transacciones, tienen la capacidad para empaquetar varios pasos en una sola operación “todo o nada”.y si ocurre alguna falla que impida que se complete la transacción, entonces ninguno de los pasos se ejecuta y no se afecta la base de datos en absoluto.
+
+### SQL Transacción - Estructura
+
+La transacciones tienen la siguiente estructura postgres. Postgres en las operaciones normales usa de manera implícita el rollback el rollback.
+
+- **BEGIN**: Inicia el motor de base de datos, diciéndole que tenemos que hacer lo siguiente en una sola transacción.
+- **COMMIT**: Si llegamos al final guarde todo el cambio.
+- **ROLLBACK**: Si ocurre un error devuelva todo lo que hicimos.
+
+```sql
+BEGIN;
+<Consultas>
+COMMIT|ROLLBACK
+
+-- ####################
+
+BEGIN;
+INSERT INTO public.estaciones(
+	direccion, nombre)
+	VALUES ('direcccc', 'Estacion Transac');
+
+INSERT INTO public.trenes(
+	capacidad, modelo)
+	VALUES (300, 'Modelo Transac');
+
+COMMIT;
+```
+
+## Extensiones
+
+[Extensiones](https://www.postgresql.org/docs/13/contrib.html)
+
+```sql
+CREATE EXTENsION fuzzystrmatch;
+
+SELECT levenshtein('Mauro', 'Mauricio');
+
+SELECT difference('beard', 'bird');
+```

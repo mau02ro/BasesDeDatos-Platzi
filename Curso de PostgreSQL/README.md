@@ -375,3 +375,17 @@ SELECT levenshtein('Mauro', 'Mauricio');
 
 SELECT difference('beard', 'bird');
 ```
+
+## Mantenimiento
+
+Postgres maneja una serie de funciones que trabajan en segundo plano mientras que trabajamos directamente en la base de datos, y esto es a lo que le llamamos mantenimiento.
+
+El nombre más común de esto es Vaccum, ya que esto quita todas las filas y columnas e items del disco duro que no están funcionando, ya que postgres al percatarse de esto, las marca como “para borrar después”.
+
+- Vacuum: La más importante, con tres opciones, Vacuum, Freeze y Analyze.
+  - Full: la tabla quedará limpia en su totalidad.
+  - Freeze: durante el proceso la tabla se congela y no permite modificaciones hasta que no termina la limpieza.
+  - Analyze: solo revisa la tabla.
+- Analyze: No hace cambios en la tabla. Solo hace una revisión y la muestra.
+- Reindex: Aplica para tablas con numerosos registros con indices, como por ejemplo las llaves primarias.
+- Cluster: Especificamos al motor de base de datos que reorganice la información en el disco.

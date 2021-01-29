@@ -414,7 +414,7 @@ Tenemos que modificar loas archivos de configuración de ambas bases de datos:
     # Para evitar que la db de replicas tenga que autenticarse debemos agregar su ip a la lista de host permitidos
     host	replication 	all 	xxx.x.x.xx/32 	trust
 
-**_Reiniciamos el servicio de PostgreSQL en master. _**
+**_Reiniciamos el servicio de PostgreSQL en master._**
 
 ### Esclavo
 
@@ -430,4 +430,4 @@ Tenemos que modificar loas archivos de configuración de ambas bases de datos:
     # se inicie en modo replica
     wal_level = hot_standby
 
-**_Reiniciamos el servicio de PostgreSQL en esclavo. _**
+**_Reiniciamos el servicio de PostgreSQL en esclavo._**

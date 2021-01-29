@@ -389,3 +389,45 @@ El nombre más común de esto es Vaccum, ya que esto quita todas las filas y col
 - Analyze: No hace cambios en la tabla. Solo hace una revisión y la muestra.
 - Reindex: Aplica para tablas con numerosos registros con indices, como por ejemplo las llaves primarias.
 - Cluster: Especificamos al motor de base de datos que reorganice la información en el disco.
+
+## Replicas
+
+Para aplicar las replicas a nuestra base de datos necesitamos más de un servidor corriendo un nodo de PostgreSQL.
+Tenemos que modificar loas archivos de configuración de ambas bases de datos:
+
+### Master
+
+#### Archivo - Postgresql.conf
+
+    # Este indica que la db va a funcionar en stanby, s decir que va a guardar sus archivos de bitácora hasta que algún esclavo los copie y ejecute.
+    wal_level = hot_standby
+
+    #Número máximo de replicadores
+    max_wal_senders = 2
+
+    # <indica como vamos a guardar los archivos de la bitácora, esto indica que dichos archivos no lo vamos a eliminar si no a archivar
+    archive_mode = on
+    archive_command = ‘cp %p /tmp/%f’
+
+#### Archivo - pg_hba.conf
+
+    # Para evitar que la db de replicas tenga que autenticarse debemos agregar su ip a la lista de host permitidos
+    host	replication 	all 	xxx.x.x.xx/32 	trust
+
+**_Reiniciamos el servicio de PostgreSQL en master. _**
+
+### Esclavo
+
+#### Archivo - Atravez de la consola
+
+    # Tenemos que indicarle que copie toda la información de master para que inicie su información con lo hay ya en master
+    sudo service postgresql stop
+    rm -rf  /var/lib/pgsql/data/*
+    pg_basebackup  –U  <USUARIO>   -R   -D  /var/lib/pgsql/data/   --host=xxx.xx.xx.x   --port=5432
+
+#### Archivo - Postgresql.conf
+
+    # se inicie en modo replica
+    wal_level = hot_standby
+
+**_Reiniciamos el servicio de PostgreSQL en esclavo. _**

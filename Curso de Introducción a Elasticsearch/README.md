@@ -75,8 +75,8 @@ http://localhost:9200/{INDICE}/_search
 
 #### Obetener un documento
 
-```
-http://localhost:9200/{INDICE}/_doc/{ID}
+```http
+GET /{INDICE}/_doc/{ID}
 
 ## Sin metadatos
 http://localhost:9200/{INDICE}/_source/{ID}
@@ -85,17 +85,16 @@ http://localhost:9200/{INDICE}/_source/{ID}
 
 #### Mapeo de documento
 
-```
-http://localhost:9200/{INDICE}/_mapping
+```http
+GET /{INDICE}/_mapping
 ```
 
 ### POST and PUT
 
 - Crear y actualizar documentos.
 
-```
-POST
-http://localhost:9200/{INDICE}/_update/{ID}
+```http
+POST /{INDICE}/_update/{ID}
 
 BODY:
 {
@@ -105,10 +104,10 @@ BODY:
 
 ### DELETE
 
-```
-http://localhost:9200/{INDICE}
+```http
+DELETE /{INDICE}
 
-http://localhost:9200/{INDICE}/_doc/{ID}
+DELETE /{INDICE}/_doc/{ID}
 
 ```
 
@@ -160,7 +159,7 @@ Una propiedad que se llame estado solo puede tener tres valores posibles (activo
 - Si el cmapo estado es keyword y se busca 'activ' no generara resultados.
 - Si el cmapo estado es text y se busca 'activ' retornara activo e inactivo.
 
-```
+```http
 PUT /{INDICE}
 
 {
@@ -180,7 +179,7 @@ PUT /{INDICE}
 }
 ```
 
-```
+```htpp
 PUT /{INDICE}
 {
     "properties": {
@@ -231,7 +230,7 @@ Para las búsquedas usamos GET /\_search:
 
 - **Must**: es como un **AND** lógico, la consulta debe aparecer en los documentos retornados, _INFLUYE EN EL PUNTAJE_.
 
-```
+```http
 GET /{INDICE}/_search
 
 {
@@ -247,7 +246,7 @@ GET /{INDICE}/_search
 
 - **Filter**: es como un **AND** lógico, la consulta debe aparecer en los documentos retornados, _NO INFLUYE EN EL PUNTAJE_, se deberia utilizar **Filter** en vez de **Must** si no nos interessa el puntaje, permite caché.
 
-```
+```http
 GET /{INDICE}/_search
 
 {
@@ -265,7 +264,7 @@ GET /{INDICE}/_search
 
 Si **Must o Filter(AND)** están presnetes en la consulta booleana **minimum_should_match=0**(este se vuelve opcional), de lo contrario **minimum_should_match=1**(Al estar sola almenos una condición debe cumplirse).
 
-```
+```http
 GET /{INDICE}/_search
 
 {
@@ -289,7 +288,7 @@ GET /{INDICE}/_search
 
 - **Must Not**: es como un **NOT** lógico, la consulta **no** debe aparecer en los documentos retornados, _NO INFLUYE EN EL PUNTAJE_, permite caché.
 
-```
+```http
 GET /{INDICE}/_search
 
 {
@@ -305,7 +304,7 @@ GET /{INDICE}/_search
 
 ## Consultas Booleanas
 
-```
+```http
 GET /{INDICE}/_search
 
 {
@@ -368,7 +367,7 @@ GET /{INDICE}/_search
 
 Las consultas anidadas encuentre documentos usando sus objetos anidados, al encontrar una coincidencia el documento raíz es devuelto.
 
-```
+```http
 PUT /{INDEX}/
 
 {
@@ -387,7 +386,7 @@ PUT /{INDEX}/
 }
 ```
 
-```
+```http
 GET /{INDEX}/_search
 
 {
